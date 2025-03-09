@@ -9,17 +9,12 @@
                     Faithful
                     Friend Portraits</p>
             </div>
-
-            
-
             <div class="relative mx-0 flex flex-col">
                 <img src="~/assets/main_image_cropped.jpeg" class="rounded-md self-center px-8" alt="">
             <img name="ctaButton" src="~/assets/whatsappbutton.png" @click="ctaClicked"
                 :class="[arrivedState.bottom | arrivedState.top && 'animate-subtle-celebrate']"
                 class="w-10 h-10 rounded-full bg-white/50 fixed right-4 top-1/2 md:right-8 md:h-16 md:w-16 lg:right-16 lg:w-20 lg:h-20" alt="">
             </div>
-
-
             <div name="subandcopy" class=" flex flex-col md:gap-4 lg:gap-6 mt-4">
                 <p class=" font-moondance text-3xl md:text-4xl lg:text-5xl font-semibold">Authentic Pet Portraits</p>
                 <p class=" font-moondance text-2xl md:text-3xl lg:text-4xl">For hand painted oil portraits that bring your pet's unique
@@ -27,7 +22,6 @@
                     for
                     someone special.</p>
             </div>
-
         </div>
 
         <div class="" name="gallery">
