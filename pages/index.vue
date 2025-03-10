@@ -2,22 +2,30 @@
     <div ref="mainContainerElement"
         class=" flex flex-col w-full mx-auto h-screen bg-neutral-200 overflow-scroll gap-8 p-2 text-amber-950 max-w-6xl">
         <div name="topMainDiv" class=" w-full justify-evenly gap-4 pt-2 flex-col flex bg-yellow-100/5 rounded-sm">
-            <div name="nameandlogo" class="flex justify-center gap-2 md:gap-4 lg:gap-6 align-middle  py-2 bg-yellow-100/10">
-                <img src="~/assets/logo_amber900.png" class="h-10 w-10 rounded-full md:h-14 md:w-14 lg:w-20 lg:h-20" alt="">
-                <p
+            <div name="nameandlogo"
+                class="flex justify-center gap-2 md:gap-4 lg:gap-6 align-middle  py-2 bg-yellow-100/10 animate-spin-fast">
+                <img src="~/assets/logo_amber900.png" class="h-10 w-10 rounded-full md:h-14 md:w-14 lg:w-20 lg:h-20"
+                    alt="">
+                <div
+                    class="font-clickerscript text-center text-4xl font-semibold underline underline-offset-4 md:text-5xl lg:text-7xl lg:underline-offset-8 animae-spin-fast">
+                    {{ word1AfterRandomise }}
+                </div>
+                <!-- <p
                     class="font-clickerscript text-center text-4xl font-semibold underline underline-offset-4 md:text-5xl lg:text-7xl lg:underline-offset-8">
                     Faithful
-                    Friend Portraits</p>
+                    Friend Portraits</p> -->
             </div>
             <div class="relative mx-0 flex flex-col">
                 <img src="~/assets/main_image_cropped.jpeg" class="rounded-md self-center px-8" alt="">
-            <img name="ctaButton" src="~/assets/whatsappbutton.png" @click="ctaClicked"
-                :class="[arrivedState.bottom | arrivedState.top && 'animate-subtle-celebrate']"
-                class="w-10 h-10 rounded-full bg-white/50 fixed right-4 top-1/2 md:right-8 md:h-16 md:w-16 lg:right-16 lg:w-20 lg:h-20" alt="">
+                <img name="ctaButton" src="~/assets/whatsappbutton.png" @click="ctaClicked"
+                    :class="[arrivedState.bottom | arrivedState.top && 'animate-subtle-celebrate']"
+                    class="w-10 h-10 rounded-full bg-white/50 fixed right-4 top-1/2 md:right-8 md:h-16 md:w-16 lg:right-16 lg:w-20 lg:h-20"
+                    alt="">
             </div>
             <div name="subandcopy" class=" flex flex-col md:gap-4 lg:gap-6 mt-4">
                 <p class=" font-moondance text-3xl md:text-4xl lg:text-5xl font-semibold">Authentic Pet Portraits</p>
-                <p class=" font-moondance text-2xl md:text-3xl lg:text-4xl">For hand painted oil portraits that bring your pet's unique
+                <p class=" font-moondance text-2xl md:text-3xl lg:text-4xl">For hand painted oil portraits that bring
+                    your pet's unique
                     personality to life. Perfect for a cherished keepsake, a heartfelt memorial, or a meaningful gift
                     for
                     someone special.</p>
@@ -62,7 +70,7 @@
                 </transition>
             </div>
         </div>
-        
+
         <p class="font-moondance text-xs font-extralight mt-40 text-slate-500 text-center"><span class="text-[6px]">©️
             </span>
             Faithful Friend Portraits - 2025 all rights reserved</p>
@@ -92,6 +100,13 @@ const carouselConfig = {
     //   pauseAutoplayOnHover: true,
 };
 
+
+//headline vars
+const letters = "";
+// const letters = "abcdefghijklmnopqrstuvwxyz";
+const finalWord1 = "Faithful Friend Portraits";
+const word1AfterRandomise = ref(" ");
+const iterations = ref(0);
 
 const currentSlide = ref(0);
 
@@ -160,6 +175,27 @@ const ctaClicked = () => {
         window.open('https://web.whatsapp.com/send/?phone=27739858738&text=FFPortraits+web+query:')
     }
 };
+
+
+function randomiseWord1() {
+    const { pause, resume, isActive } = useIntervalFn(() => {
+        iterations.value += 1 / 3;
+        word1AfterRandomise.value = finalWord1
+            .split("")
+            .map((letter, index) => {
+                if (index < iterations.value) {
+                    return finalWord1[index];
+                }
+                return letters[Math.floor(Math.random() * 26)];
+            })
+            .join("");
+        //stop if reached end
+        if (iterations.value >= finalWord1.length) {
+            pause();
+        }
+    }, 30);
+}
+randomiseWord1();
 
 
 </script>
