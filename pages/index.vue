@@ -83,8 +83,9 @@ import pic1 from "../assets/carousel_images/1.jpg";
 import pic2 from "../assets/carousel_images/2.jpg";
 import pic3 from "../assets/carousel_images/3.jpg";
 import pic4 from "../assets/carousel_images/4.jpg";
+import pic5 from "../assets/carousel_images/5.jpg";
 
-const caroimages = [pic1, pic2, pic3, pic4];
+const caroimages = [pic1, pic2, pic3, pic4, pic5];
 const caroPick = ref();
 
 const mainContainerElement = ref(null);
@@ -148,7 +149,7 @@ const faqs = [
     },
     {
         question: 'How much does a portrait cost?',
-        answer: 'An A3 canvas portrait is R5000 (framing and delivery not included). Custom sizes are also available—contact me for details.'
+        answer: 'An A3 canvas portrait is R5000 (framing and delivery not included).'
     },
     {
         question: 'Can I request a custom size?',
