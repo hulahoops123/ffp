@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   ],
 
   googleFonts: {
-    // display: "swap",
+    display: "swap",
     families: {
       'Raleway': true,
       'Staatliches':true,
