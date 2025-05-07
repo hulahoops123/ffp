@@ -3,8 +3,8 @@
     class="flex flex-col w-full mx-auto h-screen bg-neutral-200 overflow-scroll gap-8 p-2 text-amber-950 max-w-6xl">
 
     <!-- TOP SECTION: Logo and Headline -->
-    <div class="w-full flex flex-col gap-4 pt-2 bg-yellow-100/5 rounded-sm">
-      <div class="flex justify-center gap-2 md:gap-4 lg:gap-6 py-2 bg-yellow-100/10 animate-spin-fast">
+    <div class="w-full flex flex-col gap-4 pt-2 rounded-sm">
+      <div class="flex justify-center gap-2 md:gap-4 lg:gap-6 py-2 rounded-lg animate-spin-fast">
         <img src="~/assets/logo_amber900.png" alt="Logo"
           class="h-10 w-10 rounded-full md:h-14 md:w-14 lg:w-20 lg:h-20" />
         <div
@@ -27,7 +27,7 @@
 
 
       <!-- Subheading + Description -->
-      <div class="flex flex-col md:gap-4 lg:gap-6 mt-4">
+      <div class="flex flex-col md:gap-4 lg:gap-6 mt-4 p-2 bg-yellow-500/10 rounded-lg">
         <p class="font-moondance text-3xl md:text-4xl lg:text-5xl font-semibold">
           Authentic Pet Portraits
         </p>
@@ -44,7 +44,7 @@
       <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
         <a v-for="(image, key) in caroimages2FullData" :key="key" :href="image.largeURL" :data-pswp-width="image.width"
           :data-pswp-height="image.height" rel="noreferrer"
-          class="block overflow-hidden rounded-lg hover:opacity-80 transition">
+          class="block overflow-hidden rounded-lg hover:opacity-80 transition shadow-lg">
           <img :src="image.thumbnailURL" alt="Gallery Image" class="w-full h-auto object-cover rounded-lg"
             loading="lazy" />
         </a>
