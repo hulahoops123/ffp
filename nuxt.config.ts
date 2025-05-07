@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     '@nuxtjs/google-fonts',
-    'vue3-carousel-nuxt',
     '@nuxt/image',
   ],
 
