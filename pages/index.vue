@@ -76,6 +76,19 @@
   </div>
 </template>
 <script setup>
+useHead({
+  title: 'Custom Hand-Painted Pet Portraits | Faithful Friend Portraits South Africa',
+  meta: [
+    {
+      name: 'description',
+      content: 'Capture your pet\'s unique personality with custom hand-painted oil portraits. Perfect as a heartfelt gift or cherished keepsake. Order yours today!',
+    },
+    {
+      name: 'google-site-verification',
+      content: '6y2ab6hk_xcIMj77YedgAgMp31DaKVDHyG9z1fvLxFo'
+    }
+  ]
+})
 // 🖼 Import composable for loading gallery images
 import { useCarouselImages } from '~/composables/useCarouselImages.js';
 
