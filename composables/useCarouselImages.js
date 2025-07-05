@@ -1,6 +1,6 @@
 // This composable looks strange because the wildcard causes a linter error where the code is greyed out
 export const useCarouselImages = async () => {
-  const images = import.meta.glob("/assets/carousel_images/*.{jpg,jpeg,png,gif}", { eager: true });
+  const images = import.meta.glob("/assets/carousel_images/*.{jpg,jpeg,png,gif,webp}", { eager: true });
 
   // Convert to array of objects with URL and placeholder width/height
   const imageEntries = Object.values(images).map((img) => ({
