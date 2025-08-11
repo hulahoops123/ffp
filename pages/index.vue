@@ -41,6 +41,8 @@
     <!-- IMAGE GALLERY SECTION (Masonry + Lightbox) -->
     <section :id="props.galleryID" class="p-2">
       <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+        <h2 class="sr-only">Examples of our hand-painted pet portraits</h2>
+
         <a v-for="(image, key) in caroimages2FullData" :key="key" :href="image.largeURL" :data-pswp-width="image.width"
           :data-pswp-height="image.height" rel="noreferrer"
           class="block overflow-hidden rounded-lg hover:opacity-80 transition shadow-lg">
@@ -70,8 +72,9 @@
 
     <!-- FOOTER -->
     <p class="font-moondance text-xs font-extralight mt-40 text-slate-500 text-center">
-      <span class="text-[6px]">©️ </span> Faithful Friend Portraits - 2025 all rights reserved
+      <span class="text-[6px]">©️ </span> Faithful Friend Portraits - Creating timeless hand-painted pet portraits for clients across South Africa - 2025 all rights reserved
     </p>
+    
   </div>
 </template>
 <script setup>
@@ -163,27 +166,27 @@ const faqs = [
   {
     question: 'How do I commission a portrait?',
     answer:
-      'Simply reach out to me to discuss your portrait. Once we’ve chosen the right size and details, I’ll guide you through the process of providing reference photos and finalizing your booking.'
+      'Simply reach out to me to discuss your pet portrait. Once we’ve chosen the right size and details, I’ll guide you through the process of providing reference photos and finalizing your booking.'
   },
   {
     question: 'What reference photos do you need?',
     answer:
-      'Clear, high-quality photos with good lighting work best. The more detail, the better! If you\'re unsure, I’m happy to help you choose the perfect reference.'
+      'For the best pet portraits, clear, high-quality photos with good lighting work best. The more detail, the better! If you\'re unsure, I’m happy to help you choose the perfect reference.'
   },
   {
     question: 'How long does it take?',
     answer:
-      'Each portrait is hand-painted with care and typically takes 2–3 weeks to complete.'
+      'Each pet portrait is hand-painted with care and typically takes 2–3 weeks to complete.'
   },
   {
     question: 'How much does a portrait cost?',
     answer:
-      'An A3 canvas portrait is R5000 (framing and delivery not included).'
+      'An A3 canvas pet portrait is R5000 (framing and delivery not included).'
   },
   {
     question: 'Can I request a custom size?',
     answer:
-      'Yes! I offer a range of sizes to suit your space. Let me know what you\'re looking for, and I’ll be happy to accommodate.'
+      'Yes! I offer a range of sizes to suit your space. Let me know what you\'re looking for, and I’ll be happy to accommodate your pet portrait needs.'
   },
   {
     question: 'Do you paint other subjects? Do you sell paintings or prints?',
@@ -193,9 +196,10 @@ const faqs = [
   {
     question: 'Do you ship internationally?',
     answer:
-      'Yes, I can arrange international shipping. Costs and delivery times vary based on location—contact me for a quote.'
+      'Yes, I can arrange international shipping for pet portraits. Costs and delivery times vary based on location—contact me for a quote.'
   }
-];
+]
+
 
 const toggle = (index) => {
   openIndex.value = openIndex.value === index ? null : index;
