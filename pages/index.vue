@@ -28,13 +28,11 @@
 
       <!-- Subheading + Description -->
       <div class="flex flex-col md:gap-4 lg:gap-6 mt-4 p-2 bg-yellow-500/10 rounded-lg">
-        <p class="font-moondance text-3xl md:text-4xl lg:text-5xl font-semibold">
-          Authentic Pet Portraits
-        </p>
+        <h1 class="font-moondance text-3xl md:text-4xl lg:text-5xl font-semibold">
+          Authentic Pet Portraits in South Africa
+        </h1>
         <p class="font-moondance text-2xl md:text-3xl lg:text-4xl">
-          For hand-painted oil portraits that bring your pet's unique
-          personality to life. Perfect for a cherished keepsake, a heartfelt
-          memorial, or a meaningful gift for someone special.
+For hand-painted pet portraits that capture your pet’s unique personality in oil on canvas. Perfect as a cherished keepsake, a heartfelt memorial, or a meaningful gift for someone special.
         </p>
       </div>
     </div>
@@ -45,7 +43,7 @@
         <a v-for="(image, key) in caroimages2FullData" :key="key" :href="image.largeURL" :data-pswp-width="image.width"
           :data-pswp-height="image.height" rel="noreferrer"
           class="block overflow-hidden rounded-lg hover:opacity-80 transition shadow-lg">
-          <img :src="image.thumbnailURL" alt="Gallery Image" class="w-full h-auto object-cover rounded-lg"
+          <img :src="image.thumbnailURL" :alt="image.alt" class="w-full h-auto object-cover rounded-lg"
             loading="lazy" />
         </a>
       </div>
@@ -77,7 +75,7 @@
 </template>
 <script setup>
 useHead({
-  title: 'Custom Hand-Painted Pet Portraits | Faithful Friend Portraits South Africa',
+  title: 'Pet Portraits South Africa | Custom Hand-Painted by Faithful Friend Portraits',
   meta: [
     {
       name: 'description',

@@ -1,29 +1,46 @@
-// This composable looks strange because the wildcard causes a linter error where the code is greyed out
 export const useCarouselImages = async () => {
-  const images = import.meta.glob("/assets/carousel_images/*.{jpg,jpeg,png,gif,webp}", { eager: true });
+  const modules = import.meta.glob('/assets/carousel_images/*.{jpg,jpeg,png,gif,webp}', { eager: true })
 
-  // Convert to array of objects with URL and placeholder width/height
-  const imageEntries = Object.values(images).map((img) => ({
-    url: img.default,
-    width: 0,  // placeholder
-    height: 0, // placeholder
-  }));
+  // Build array with filename, path, and URL (no TS types)
+  const files = Object.entries(modules).map(([path, mod]) => {
+    const filename = (path.split('/').pop() || '').replace(/\.[^/.]+$/, '')
 
-  // Create an array of promises to load each image and get dimensions
-  const promises = imageEntries.map((entry) => {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.src = entry.url;
+    // Filename -> nice phrase
+    const readable = filename
+      .replace(/_/g, ' ')
+      .replace(/-/g, ' ')
+      .trim()
+
+    // Capitalize words but keep “dog/cat” lower for sentence flow
+    const capitalized = readable.replace(/\b\w/g, c => c.toUpperCase())
+    const speciesFixed = capitalized
+      .replace(/\bDog\b/g, 'dog')
+      .replace(/\bCat\b/g, 'cat')
+
+    const alt = `Pet portrait of a ${speciesFixed} — hand-painted by Faithful Friend Portraits`
+
+    return { path, url: mod.default, alt }
+  })
+
+  // Natural sort by filename
+  files.sort((a, b) => a.path.localeCompare(b.path, undefined, { numeric: true, sensitivity: 'base' }))
+
+  // Load dimensions
+  const promises = files.map(({ url, alt }) => {
+    return new Promise(resolve => {
+      const img = new Image()
+      img.src = url
       img.onload = () => {
         resolve({
-          largeURL: entry.url,
-          thumbnailURL: entry.url, // you can swap this if you have separate thumbs
+          largeURL: url,
+          thumbnailURL: url,
           width: img.naturalWidth,
           height: img.naturalHeight,
-        });
-      };
-    });
-  });
+          alt
+        })
+      }
+    })
+  })
 
-  return Promise.all(promises);
-};
+  return Promise.all(promises)
+}

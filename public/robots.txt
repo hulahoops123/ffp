@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://faithfulfriendportraits.co.za/sitemap.xml
