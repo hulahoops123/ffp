@@ -32,7 +32,8 @@
           Authentic Pet Portraits in South Africa
         </h1>
         <p class="font-moondance text-2xl md:text-3xl lg:text-4xl">
-For hand-painted pet portraits that capture your pet’s unique personality in oil on canvas. Perfect as a cherished keepsake, a heartfelt memorial, or a meaningful gift for someone special.
+          For hand-painted pet portraits that capture your pet’s unique personality in oil on canvas. Perfect as a
+          cherished keepsake, a heartfelt memorial, or a meaningful gift for someone special.
         </p>
       </div>
     </div>
@@ -84,6 +85,30 @@ useHead({
     {
       name: 'google-site-verification',
       content: '6y2ab6hk_xcIMj77YedgAgMp31DaKVDHyG9z1fvLxFo'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Faithful Friend Portraits",
+        "url": "https://faithfulfriendportraits.co.za",
+        "description": "Custom hand-painted pet portraits in oil on canvas. Thoughtful gifts and heartfelt memorials.",
+        "telephone": "+27739858738",
+        "areaServed": "ZA",
+        "sameAs": []
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Faithful Friend Portraits",
+        "url": "https://faithfulfriendportraits.co.za"
+      })
     }
   ]
 })
