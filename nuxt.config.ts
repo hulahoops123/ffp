@@ -16,12 +16,9 @@ export default defineNuxtConfig({
   ],
   // @ts-ignore: googleFonts module options are not typed by default.
   googleFonts: {
-    display: "swap",
+    display: "fallback",
     families: {
-      'Raleway': true,
-      'Staatliches': true,
       'Clicker Script': true,
-      'Quintessential': true,
       'Moon Dance': true,
     }
   },
