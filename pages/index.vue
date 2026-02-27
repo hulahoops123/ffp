@@ -78,6 +78,10 @@
   </div>
 </template>
 <script setup>
+const { data: portraitFiles } = await useAsyncData('portraits', () => $fetch('/api/portraits'))
+const randomPortrait = portraitFiles.value?.[Math.floor(Math.random() * (portraitFiles.value?.length ?? 1))]
+const ogImage = `https://faithfulfriendportraits.co.za/portraits/${randomPortrait}`
+
 useHead({
   title: 'Pet Portraits South Africa | Custom Hand-Painted by Faithful Friend Portraits',
   meta: [
@@ -88,7 +92,15 @@ useHead({
     {
       name: 'google-site-verification',
       content: '6y2ab6hk_xcIMj77YedgAgMp31DaKVDHyG9z1fvLxFo'
-    }
+    },
+    { property: 'og:image', content: ogImage },
+    { property: 'og:image:alt', content: 'A hand-painted pet portrait by Faithful Friend Portraits' },
+    { property: 'og:title', content: 'Pet Portraits South Africa | Faithful Friend Portraits' },
+    { property: 'og:description', content: 'Custom hand-painted oil portraits that capture your pet\'s unique personality. Order yours today!' },
+    { property: 'og:url', content: 'https://faithfulfriendportraits.co.za' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:image', content: ogImage },
   ],
   script: [
     {
