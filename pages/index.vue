@@ -78,7 +78,7 @@
   </div>
 </template>
 <script setup>
-const { data: portraitFiles } = await useAsyncData('portraits', () => $fetch('/api/portraits'))
+const { data: portraitFiles } = await useAsyncData('portraits', () => $fetch('/portraits-list.json'))
 const randomPortrait = portraitFiles.value?.[Math.floor(Math.random() * (portraitFiles.value?.length ?? 1))]
 const ogImage = `https://faithfulfriendportraits.co.za/portraits/${randomPortrait}`
 

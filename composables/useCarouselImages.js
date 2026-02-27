@@ -1,5 +1,5 @@
 export const useCarouselImages = async () => {
-  const files = await $fetch('/api/portraits')
+  const files = await $fetch('/portraits-list.json')
 
   const items = files.map(filename => {
     const name = filename.replace(/\.[^/.]+$/, '')
