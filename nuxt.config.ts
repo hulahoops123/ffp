@@ -27,5 +27,12 @@ export default defineNuxtConfig({
     siteUrl: 'https://faithfulfriendportraits.co.za',
   },
 
+  nitro: {
+    serverAssets: [{
+      baseName: 'portraits',
+      dir: './public/portraits'
+    }]
+  },
+
   compatibilityDate: '2025-03-06',
 })
