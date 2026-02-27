@@ -27,10 +27,25 @@ export default defineNuxtConfig({
     siteUrl: 'https://faithfulfriendportraits.co.za',
   },
 
+  hooks: {
+    async 'build:before'() {
+      const { readdir, writeFile, mkdir } = await import('node:fs/promises')
+      const { resolve } = await import('node:path')
+      const dataDir = resolve('./server-data')
+      await mkdir(dataDir, { recursive: true })
+      const files = await readdir(resolve('./public/portraits'))
+      const list = files
+        .filter((f: string) => /\.(jpg|jpeg|png|gif|webp)$/i.test(f))
+        .sort((a: string, b: string) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+      await writeFile(resolve(dataDir, 'portraits.json'), JSON.stringify(list))
+      console.log(`Generated portraits.json with ${list.length} portraits`)
+    }
+  },
+
   nitro: {
     serverAssets: [{
-      baseName: 'portraits',
-      dir: './public/portraits'
+      baseName: 'server-data',
+      dir: './server-data'
     }]
   },
 

@@ -1,3 +1,6 @@
+# Generated at build time
+server-data/
+
 # Nuxt dev/build outputs
 .output
 .nuxt
