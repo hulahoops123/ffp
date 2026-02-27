@@ -35,8 +35,10 @@ export default defineNuxtConfig({
       const list = files
         .filter((f: string) => /\.(jpg|jpeg|png|gif|webp)$/i.test(f))
         .sort((a: string, b: string) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
-      await writeFile(resolve('./public/portraits-list.json'), JSON.stringify(list))
-      console.log(`Generated portraits-list.json with ${list.length} portraits`)
+      const json = JSON.stringify(list)
+      await writeFile(resolve('./public/portraits-list.json'), json)
+      await writeFile(resolve('./server/portraits-data.json'), json)
+      console.log(`Generated portraits data with ${list.length} portraits`)
     }
   },
 

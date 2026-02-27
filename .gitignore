@@ -1,6 +1,7 @@
 # Generated at build time
 server-data/
 public/portraits-list.json
+server/portraits-data.json
 
 # Nuxt dev/build outputs
 .output
