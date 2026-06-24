@@ -113,6 +113,7 @@ useHead({
         "description": "Custom hand-painted pet portraits in oil on canvas. Thoughtful gifts and heartfelt memorials.",
         "telephone": "+27739858738",
         "areaServed": "ZA",
+        "image": ogImage,
         "sameAs": []
       })
     },
