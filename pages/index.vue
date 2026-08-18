@@ -194,7 +194,7 @@ const faqs = [
   {
     question: 'How much does a portrait cost?',
     answer:
-      'An A3 canvas pet portrait is R5000 (framing and delivery not included).'
+      'It varies by size but for example an A3 canvas pet portrait is R5000 (framing and delivery not included).'
   },
   {
     question: 'Can I request a custom size?',
