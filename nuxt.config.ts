@@ -18,6 +18,8 @@ export default defineNuxtConfig({
   app: {
     head: {
       link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico?v=4' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png?v=4' },
         { rel: 'preload', href: '/fonts/moon-dance-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
         { rel: 'preload', href: '/fonts/clicker-script-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
       ],
