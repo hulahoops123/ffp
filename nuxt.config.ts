@@ -10,17 +10,18 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    '@nuxtjs/google-fonts',
     '@nuxt/image',
     '@nuxtjs/sitemap', // ← add this line
   ],
-  // @ts-ignore: googleFonts module options are not typed by default.
-  googleFonts: {
-    display: "fallback",
-    families: {
-      'Clicker Script': true,
-      'Moon Dance': true,
-    }
+  css: ['~/assets/css/fonts.css'],
+
+  app: {
+    head: {
+      link: [
+        { rel: 'preload', href: '/fonts/moon-dance-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
+        { rel: 'preload', href: '/fonts/clicker-script-latin.woff2', as: 'font', type: 'font/woff2', crossorigin: '' },
+      ],
+    },
   },
   // @ts-ignore: Nuxt does not type sitemap config by default
   sitemap: {
