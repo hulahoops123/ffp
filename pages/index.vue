@@ -177,39 +177,14 @@ const { isScrolling, directions } = useScroll(mainContainerElement);
 const openIndex = ref(null);
 const faqs = [
   {
-    question: 'How do I commission a portrait?',
-    answer:
-      'Simply reach out to me to discuss your pet portrait. Once we’ve chosen the right size and details, I’ll guide you through the process of providing reference photos and finalizing your booking.'
-  },
-  {
-    question: 'What reference photos do you need?',
-    answer:
-      'For the best pet portraits, clear, high-quality photos with good lighting work best. The more detail, the better! If you\'re unsure, I’m happy to help you choose the perfect reference.'
-  },
-  {
-    question: 'How long does it take?',
-    answer:
-      'Each pet portrait is hand-painted with care and typically takes 2–3 weeks to complete.'
-  },
-  {
     question: 'How much does a portrait cost?',
     answer:
       'It varies by size but for example an A3 canvas pet portrait is R5000 (framing and delivery not included).'
   },
   {
-    question: 'Can I request a custom size?',
+    question: 'How long does it take?',
     answer:
-      'Yes! I offer a range of sizes to suit your space. Let me know what you\'re looking for, and I’ll be happy to accommodate your pet portrait needs.'
-  },
-  {
-    question: 'Do you paint other subjects? Do you sell paintings or prints?',
-    answer:
-      'Yes! I also create artwork beyond pet portraits. Feel free to reach out for access to my private gallery or to discuss something special.'
-  },
-  {
-    question: 'Do you ship internationally?',
-    answer:
-      'Yes, I can arrange international shipping for pet portraits. Costs and delivery times vary based on location—contact me for a quote.'
+      'Each pet portrait is hand-painted with care and typically takes 2–3 weeks to complete.'
   }
 ]
 
