@@ -46,9 +46,11 @@
 
         <a v-for="(image, key) in caroimages2FullData" :key="key" :href="image.largeURL" :data-pswp-width="image.width"
           :data-pswp-height="image.height" rel="noreferrer"
+          :class="{ 'tile-placeholder': !loadedImages.has(image.thumbnailURL) }"
           class="gallery-tile block overflow-hidden rounded-lg hover:opacity-80 transition shadow-lg">
-          <img :src="image.thumbnailURL" :alt="image.alt" class="w-full h-auto object-cover rounded-lg"
-            loading="lazy" />
+          <img :src="image.thumbnailURL" :alt="image.alt" :width="image.width" :height="image.height"
+            class="relative w-full h-auto object-cover rounded-lg" :loading="key < 4 ? 'eager' : 'lazy'"
+            @load="loadedImages.add(image.thumbnailURL)" />
         </a>
       </div>
     </section>
@@ -79,8 +81,16 @@
   </div>
 </template>
 <script setup>
-const { data: portraitFiles } = await useAsyncData('portraits', () => $fetch('/api/portraits'))
-const randomPortrait = portraitFiles.value?.[Math.floor(Math.random() * (portraitFiles.value?.length ?? 1))]
+// Shuffled on the server so every reload shows a fresh order; the client reuses the same order from the payload
+const { data: portraitFiles } = await useAsyncData('portraits', async () => {
+  const list = [...await $fetch('/api/portraits')]
+  for (let i = list.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]]
+  }
+  return list
+})
+const randomPortrait = portraitFiles.value?.[Math.floor(Math.random() * (portraitFiles.value?.length ?? 1))]?.file
 const ogImage = `https://faithfulfriendportraits.co.za/portraits/${randomPortrait}`
 
 useHead({
@@ -143,7 +153,10 @@ const props = defineProps({
   }
 });
 
-const caroimages2FullData = ref([]);
+// Rendered server-side with build-time dimensions, so tiles (and their placeholders) are in the first HTML
+const caroimages2FullData = computed(() => useCarouselImages(portraitFiles.value));
+// Placeholder shimmer is dropped once an image loads (images that finished before hydration are picked up in onMounted)
+const loadedImages = reactive(new Set());
 let lightbox;
 
 // ✨ Gallery entrance — like Framer's "Animated Masonry Grid": each tile slides in flat from a random
@@ -188,8 +201,10 @@ watch([galleryVisible, () => caroimages2FullData.value.length], async ([visible,
   setTimeout(() => { galleryAnimating.value = false; }, (tiles.length - 1) * TILE_STAGGER + TILE_DURATION + 100);
 });
 
-onMounted(async () => {
-  caroimages2FullData.value = await useCarouselImages();
+onMounted(() => {
+  galleryElement.value.querySelectorAll('.gallery-tile img').forEach((img) => {
+    if (img.complete && img.naturalWidth) loadedImages.add(img.getAttribute('src'));
+  });
 
   lightbox = new PhotoSwipeLightbox({
     gallery: '#' + props.galleryID,
@@ -279,7 +294,36 @@ const ctaClicked = () => {
   }
 }
 
+/* 🖼 Shimmer behind each image until it loads and paints over it (tile is sized from build-time dimensions) */
+.tile-placeholder {
+  position: relative;
+  background-color: rgb(120 53 15 / 0.08);
+}
+
+.tile-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.5) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: tile-shimmer 1.4s linear infinite;
+}
+
+@keyframes tile-shimmer {
+  from {
+    background-position: 150% 0;
+  }
+
+  to {
+    background-position: -50% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .tile-placeholder::before {
+    animation: none;
+  }
+
   .gallery-pending .gallery-tile {
     opacity: 1;
   }
